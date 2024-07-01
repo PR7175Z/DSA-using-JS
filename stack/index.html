@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Stack</title>
+        <style>
+            p{
+                border: 1px solid #000;
+                width: 50px;
+                height: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Stack</h1>
+        <div class="stack-wrapper">
+            <form id="stackform">
+                <input type="number" name="stacksize" id="stacksize" min="0">
+            </form>
+            <div id="stackview">
+
+            </div>
+            <div class="stack-input-wrapper">
+                <div class="form-title">
+                    <h2>Operation form</h2>
+                </div>
+                <form id="stackinput">
+                    <input type="radio" name="stackoperation" value="push">
+                    <label>Push Operation</label><br>
+                    <input type="radio" name="stackoperation" value="pop">
+                    <label>Pop Operation</label><br>
+                    <input type="number" name="stackinput" id="stackinput"><br>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>  
+        </div>
+    </body>
+    <script>
+        const stacksize = document.querySelector("input[name = 'stacksize']");
+        const stackview = document.getElementById('stackview');
+        const stackform = document.getElementById('stackinput');
+        stacksize.addEventListener('change',function(){
+            const size = stacksize.value;
+            stackview.innerHTML='';
+            for(let i=0; i<size; i++){
+                stackview.appendChild(document.createElement("p"));
+            }
+        });
+        stackform.addEventListener('submit', function(e){
+            e.preventDefault();
+            console.log(document.querySelector("input[name = 'stackoperation']").value);
+        });
+        // let stack=[];
+        // let ch = 'y';
+        // while(ch == 'y'){
+        //     let option = parseInt(prompt("1. push in stack\n 2.pop in stack \n 3. display stack \n Enter your choice: "));
+        //     switch(option){
+        //         case 1:
+        //             x = parseInt(prompt('Enter a number to store in stack'));
+        //             stack.push(x);
+        //             break;
+        //         case 2:
+        //             stack.pop();
+        //             break;
+        //         case 3:
+        //             console.log(stack);
+        //             break;
+        //     }
+        //     ch = prompt('Want to continue? (y/n)');
+        // }
+    </script>
+</html>
