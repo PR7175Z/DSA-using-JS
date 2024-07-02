@@ -71,6 +71,27 @@
                 }
             }
         }
+        function pop(){
+            const ch = document.querySelectorAll('#stackview p');
+            let c = 0;
+            ch.forEach(element => {
+                if(element.innerHTML.trim() === ''){
+                    c++;
+                }
+            });
+            if(c === ch.length){
+                errormsg.innerHTML ='Stack Underflow';
+                return ;
+            }
+            for(let i = 0; i <= ch.length; ){
+                if(ch[i].innerHTML.trim() !== ''){
+                    ch[i].innerHTML = '';
+                    break;
+                }else{
+                    i++;
+                }
+            }
+        }
 
         stacksize.addEventListener('change',function(){
             const size = stacksize.value;
@@ -90,26 +111,7 @@
                     if(stackop[i].value == 'push'){
                         push();
                     }else{
-                        console.log('working');
-                        const ch = document.querySelectorAll('#stackview p');
-                        let c = 0;
-                        ch.forEach(element => {
-                            if(element.innerHTML.trim() === ''){
-                                c++;
-                            }
-                        });
-                        if(c === ch.length){
-                            errormsg.innerHTML ='Stack Underflow';
-                            return ;
-                        }
-                        for(let i = 0; i <= ch.length; ){
-                            if(ch[i].innerHTML.trim() !== ''){
-                                ch[i].innerHTML = '';
-                                break;
-                            }else{
-                                i++;
-                            }
-                        }
+                        pop();
                     }
                 }
             }
