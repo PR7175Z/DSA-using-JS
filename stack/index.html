@@ -5,41 +5,76 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Stack</title>
         <style>
+            *{
+                box-sizing: border-box;
+            }
+            .container{
+                max-width: 100%;
+                width:450px;
+                margin: 0 auto;
+                height: 100vh;
+                display: flex;
+                align-items: center;
+            }
             p{
-                border: 1px solid #000;
+                border: 1px solid #fff;
+                border-radius: 5px;
                 width: 50px;
                 height: 20px;
+            }
+            .stack-wrapper{
+                background: #6eb3d0;
+                border-radius: 10px;
+                padding: 20px;
+                color: #ffffff;
+                width: 100%;
+            }
+            .stack-wrapper h1{
+                margin-top: 0px;
+                text-align: center;
+            }
+            #stackform label{
+                display: block;
+            }
+            #stackform input{
+                border: none;
+                box-shadow: 0px;
+                border-radius: 2px;
+                width: 250px;
             }
         </style>
     </head>
     <body>
-        <h1>Stack</h1>
-        <div class="stack-wrapper">
-            <form id="stackform">
-                <input type="number" name="stacksize" id="stacksize" min="0">
-            </form>
-            <div id="stackview">
-
-            </div>
-            <div class="stack-input-wrapper">
-                <form id="stackinputform" style="display: none;">
-                    <div class="form-title">
-                        <h2>Operation form</h2>
-                    </div>
-                    <label>
-                        <input type="radio" name="stackoperation" value="push" required>
-                        Push Operation
-                    </label><br>
-                    <label>
-                        <input type="radio" name="stackoperation" value="pop">
-                        Pop Operation
-                    </label><br>
-                    <label>Input for stack: </label><br>
-                    <input type="number" name="stackinput" id="stackinput"><br>
-                    <input type="submit" value="Submit">
+        <div class="container ">
+            <div class="stack-wrapper">
+                <h1>Stack</h1>
+                <form id="stackform">
+                    <label>Enter the size of stack</label>
+                    <input type="number" name="stacksize" id="stacksize" min="0">
                 </form>
-            </div>  
-            <div class="error-msg"></div>
+                <div id="stackview">
+
+                </div>
+                <div class="stack-input-wrapper">
+                    <form id="stackinputform" style="display: none;">
+                        <div class="form-title">
+                            <h2>Operation form</h2>
+                        </div>
+                        <label>
+                            <input type="radio" name="stackoperation" value="push" required>
+                            Push Operation
+                        </label><br>
+                        <label>
+                            <input type="radio" name="stackoperation" value="pop">
+                            Pop Operation
+                        </label><br>
+                        <label>Input for stack: </label><br>
+                        <input type="number" name="stackinput" id="stackinput"><br>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>  
+                <div class="error-msg"></div>
+            </div>
         </div>
     </body>
     <script>
@@ -65,6 +100,7 @@
             for(let i = ch.length-1; i >= 0 ; ){
                 if(ch[i].innerHTML.trim() === ''){
                     ch[i].innerHTML = stackinput.value;
+                    stackinput.value = '';
                     break;
                 }else{
                     i--;
@@ -116,7 +152,5 @@
                 }
             }
         });
-
-
     </script>
 </html>
