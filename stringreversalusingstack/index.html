@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+    <h1>String reversal using stack</h1>
+    <form id="stackform">
+        <input type="text" name="stackinput" placeholder="Enter a text">
+    </form>
+    <div id="viewspace"></div>
+    <div id="outputval"></div>
+    <script>
+        document.getElementById('stackform').addEventListener('submit',(e) => {
+            e.preventDefault();
+            const inp = document.querySelector('input[name="stackinput"]').value.split('');
+            for(let i = inp.length-1;i>=0; i--){
+                let para = document.createElement('p');
+                let node = document.createTextNode(inp[i]);
+                para.appendChild(node);
+                document.getElementById('viewspace').appendChild(para)
+            }
+
+            document.getElementById('outputval').innerHTML = "";
+        });
+    </script>
+</body>
+</html>
