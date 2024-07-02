@@ -22,52 +22,99 @@
 
             </div>
             <div class="stack-input-wrapper">
-                <div class="form-title">
-                    <h2>Operation form</h2>
-                </div>
-                <form id="stackinput">
-                    <input type="radio" name="stackoperation" value="push">
-                    <label>Push Operation</label><br>
-                    <input type="radio" name="stackoperation" value="pop">
-                    <label>Pop Operation</label><br>
+                <form id="stackinputform" style="display: none;">
+                    <div class="form-title">
+                        <h2>Operation form</h2>
+                    </div>
+                    <label>
+                        <input type="radio" name="stackoperation" value="push" required>
+                        Push Operation
+                    </label><br>
+                    <label>
+                        <input type="radio" name="stackoperation" value="pop">
+                        Pop Operation
+                    </label><br>
+                    <label>Input for stack: </label><br>
                     <input type="number" name="stackinput" id="stackinput"><br>
                     <input type="submit" value="Submit">
                 </form>
             </div>  
+            <div class="error-msg"></div>
         </div>
     </body>
     <script>
         const stacksize = document.querySelector("input[name = 'stacksize']");
         const stackview = document.getElementById('stackview');
-        const stackform = document.getElementById('stackinput');
+        const stackform = document.getElementById('stackinputform');
+        const stackop = document.querySelectorAll('input[name="stackoperation"]');
+        const errormsg = document.querySelector('.error-msg');
+        const stackinput = document.querySelector('input[name="stackinput"]');
+
+        function push(){
+            const ch = document.querySelectorAll('#stackview p');
+            let c = 0;
+            ch.forEach(element => {
+                if(element.innerHTML.trim() != ''){
+                    c++;
+                }
+            });
+            if(c == ch.length){
+                errormsg.innerHTML ='Stack Overflow';
+                return ;
+            }
+            for(let i = ch.length-1; i >= 0 ; ){
+                if(ch[i].innerHTML.trim() === ''){
+                    ch[i].innerHTML = stackinput.value;
+                    break;
+                }else{
+                    i--;
+                }
+            }
+        }
+
         stacksize.addEventListener('change',function(){
             const size = stacksize.value;
             stackview.innerHTML='';
+            stackform.style.display = "block";
+            if(size == 0){
+                stackform.style.display = "none";
+            }
             for(let i=0; i<size; i++){
                 stackview.appendChild(document.createElement("p"));
             }
         });
         stackform.addEventListener('submit', function(e){
             e.preventDefault();
-            console.log(document.querySelector("input[name = 'stackoperation']").value);
+            for(let i = 0; i< stackop.length; i++){
+                if(stackop[i].checked){
+                    if(stackop[i].value == 'push'){
+                        push();
+                    }else{
+                        console.log('working');
+                        const ch = document.querySelectorAll('#stackview p');
+                        let c = 0;
+                        ch.forEach(element => {
+                            if(element.innerHTML.trim() === ''){
+                                c++;
+                            }
+                        });
+                        if(c === ch.length){
+                            errormsg.innerHTML ='Stack Underflow';
+                            return ;
+                        }
+                        for(let i = 0; i <= ch.length; ){
+                            if(ch[i].innerHTML.trim() !== ''){
+                                ch[i].innerHTML = '';
+                                break;
+                            }else{
+                                i++;
+                            }
+                        }
+                    }
+                }
+            }
         });
-        // let stack=[];
-        // let ch = 'y';
-        // while(ch == 'y'){
-        //     let option = parseInt(prompt("1. push in stack\n 2.pop in stack \n 3. display stack \n Enter your choice: "));
-        //     switch(option){
-        //         case 1:
-        //             x = parseInt(prompt('Enter a number to store in stack'));
-        //             stack.push(x);
-        //             break;
-        //         case 2:
-        //             stack.pop();
-        //             break;
-        //         case 3:
-        //             console.log(stack);
-        //             break;
-        //     }
-        //     ch = prompt('Want to continue? (y/n)');
-        // }
+
+
     </script>
 </html>
