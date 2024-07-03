@@ -3,27 +3,73 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+	<title>String reversal using Stack Algorithm</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .container{
+            max-width: 100%;
+            width:450px;
+            margin: 0 auto;
+            height: 100vh;
+            display: flex;
+        }
+        p{
+            border: 1px solid #fff;
+            border-radius: 5px;
+            width: 50px;
+            height: 20px;
+            text-align: center;
+        }
+        .stack-wrapper{
+            background: #6eb3d0;
+            border-radius: 10px;
+            padding: 20px;
+            color: #ffffff;
+            width: 100%;
+            margin: auto;
+        }
+        .stack-wrapper h1{
+            margin-top: 0px;
+            text-align: center;
+        }
+        #stackform label{
+            display: block;
+        }
+        #stackform input{
+            border: none;
+            box-shadow: 0px;
+            border-radius: 2px;
+            width: 250px;
+        }
+    </style>
 </head>
 <body>
-    <h1>String reversal using stack</h1>
-    <form id="stackform">
-        <input type="text" name="stackinput" placeholder="Enter a text">
-    </form>
-    <div id="viewspace"></div>
-    <div id="outputval"></div>
+    <div class="container">
+        <div class="stack-wrapper">
+            <h1>String reversal using stack</h1>
+            <form id="stackform">
+                <input type="text" name="stackinput" placeholder="Enter a text">
+            </form>
+            <div id="viewspace"></div>
+            <div id="outputval"></div>
+        </div>
+    </div>
     <script>
         document.getElementById('stackform').addEventListener('submit',(e) => {
             e.preventDefault();
+            let arr = [];
             const inp = document.querySelector('input[name="stackinput"]').value.split('');
             for(let i = inp.length-1;i>=0; i--){
                 let para = document.createElement('p');
                 let node = document.createTextNode(inp[i]);
                 para.appendChild(node);
+                arr.push(inp[i]);
                 document.getElementById('viewspace').appendChild(para)
             }
 
-            document.getElementById('outputval').innerHTML = "";
+            document.getElementById('outputval').innerHTML = "The reverse string is: " + arr.join('');
         });
     </script>
 </body>
