@@ -35,13 +35,13 @@ document.getElementById('stackform').addEventListener('submit', function(e){
                 // i = temp;
                 console.log(arr[i])
             }else{
-                s = sign.length;
-                if(precedence(arr[i]) >= precedence(sign[s])){
-                    postfix.push(arr[i]);
-                }else{
-                    postfix.push(sign[s])
-                    sign.pop();
-                }
+                // s = sign.length;
+                // if(precedence(arr[i]) >= precedence(sign[s])){
+                //     postfix.push(arr[i]);
+                // }else{
+                //     postfix.push(sign[s])
+                //     sign.pop();
+                // }
                 console.log('check');
             }
             sign.push(arr[i]);
