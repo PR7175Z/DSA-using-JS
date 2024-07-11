@@ -1,3 +1,16 @@
+function precedence(c){
+    if (c == '^'){
+        return 3;
+    }else if (c == '/' || c == '*'){
+        return 2;
+    }else if (c == '+' || c == '-'){
+        return 1;
+    }else{
+        return -1;
+    }
+}
+
+
 document.getElementById('stackform').addEventListener('submit', function(e){
     e.preventDefault();
     let sign = [];
@@ -9,18 +22,33 @@ document.getElementById('stackform').addEventListener('submit', function(e){
             if(arr[i] == ')'){
                 // temp = i;
                 s = sign.length;
-                while(sign[s-1] != '('){
+                while(sign[s] != '('){
                     s--;
+                    if(sign[s] == '(' ){
+                        break;
+                    }
                     postfix.push(sign[s]);
-                    // console.log(sign[s]);
+                    console.log(postfix)
+                    // sign.pop(s);
+                    // console.log(sign)
                 }
                 // i = temp;
                 console.log(arr[i])
+            }else{
+                s = sign.length;
+                if(precedence(arr[i]) >= precedence(sign[s])){
+                    postfix.push(arr[i]);
+                }else{
+                    postfix.push(sign[s])
+                    sign.pop();
+                }
+                console.log('check');
             }
             sign.push(arr[i]);
         }else{
             postfix.push(arr[i]);
         }
+        console.log(postfix)
         // console.log(arr[i]);
     }
     console.log( "postfix: " + postfix)
