@@ -10,6 +10,8 @@ function precedence(c){
     }
 }
 
+const result = document.querySelector('.result p');
+
 document.getElementById('stackform').addEventListener('submit', (e)=>{
     e.preventDefault();
     const inputexp = document.querySelector('input[name="mathsexp"]').value;
@@ -20,7 +22,6 @@ document.getElementById('stackform').addEventListener('submit', (e)=>{
         if(revinp[i].charCodeAt(0)>=33 && revinp[i].charCodeAt(0)<=47){
             if(stack.length > 0 && revinp[i] == '(' ){
                 while(stack[stack.length-1] != ')'){
-                    // console.log(stack[stack.length-1])
                     prefix.push(stack[stack.length-1])
                     stack.pop();
                 }
@@ -31,7 +32,6 @@ document.getElementById('stackform').addEventListener('submit', (e)=>{
                 if(stack.length > 0 && (precedence(revinp[i])>= precedence(stack[stack.length - 1]))){
                     stack.push(revinp[i]);
                 }else{
-                    // console.log(revinp[i]);
                     prefix.push(stack[stack.length - 1]);
                     stack.pop();
                     stack.push(revinp[i])
@@ -42,10 +42,10 @@ document.getElementById('stackform').addEventListener('submit', (e)=>{
         }else{
             prefix.push(revinp[i]);
         }
-        console.log(stack);
     }
     for(let j=stack.length-1; j>=0;j--){
         prefix.push(stack[j]);
     }
-    console.log(prefix)
+    result.innerHTML = "Prefix expression: " + prefix.reverse().join('');
+    // console.log(prefix)
 });
