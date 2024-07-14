@@ -31,8 +31,10 @@ document.getElementById('stackform').addEventListener('submit', (e)=>{
                 if(stack.length > 0 && (precedence(revinp[i])>= precedence(stack[stack.length - 1]))){
                     stack.push(revinp[i]);
                 }else{
+                    // console.log(revinp[i]);
                     prefix.push(stack[stack.length - 1]);
                     stack.pop();
+                    stack.push(revinp[i])
                 }
             }else{
                 stack.push(revinp[i]);
