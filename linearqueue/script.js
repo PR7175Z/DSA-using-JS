@@ -19,17 +19,17 @@ document.getElementById('queueform').addEventListener('submit', (e) =>{
     for(let i=0; i<operation.length; i++){
         if(operation[i].checked){
             if(operation[i].value === 'push'){
-                for(let i = 0; i<fields.length; i++){
-                    if(fields[i].innerHTML == ''){
-                        fields[i].innerHTML = queueinput;
+                for(let j = 0; j<fields.length; j++){
+                    if(fields[j].innerHTML == ''){
+                        fields[j].innerHTML = queueinput;
                         break;
                     }
                 }
             }else{
-                for(let i = 0; i<fields.length; i++){
-                    if(fields[i].innerHTML !== ''){
-                        result.append( ' ' + fields[i].innerHTML);
-                        fields[i].innerHTML = '';
+                for(let j = 0; j<fields.length; j++){
+                    if(fields[j].innerHTML !== ''){
+                        result.append( ' ' + fields[j].innerHTML);
+                        fields[j].innerHTML = '';
                         break;
                     }
                 }
