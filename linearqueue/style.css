@@ -15,7 +15,13 @@
     margin: 0 auto;
 }
 
-form input[name="mathsexp"]{
+#fields p{
+    width: 30px;
+    padding: 10px 10px;
+    text-align: center;
+}
+
+form input[name="size"], form input[name="queueinput"]{
     width: 250px;
     padding: 8px 10px;
 }
