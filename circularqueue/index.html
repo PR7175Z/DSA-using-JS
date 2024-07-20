@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Circular Queue</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Circular Queue</h1>
+        <form id="queuesize">
+            <input type="number" name="size" id="size">
+            <input type="submit" value="submit">
+        </form>
+        <div id="fields"></div>
+
+        <form id="queueform" style="display: none;">
+            <label>
+                <input type="radio" name="queueoperation" value="push" required>
+                Push Operation
+            </label><br>
+            <label>
+                <input type="radio" name="queueoperation" value="pop">
+                Pop Operation
+            </label><br>
+            <input type="text" name="queueinput" id="queueinput">
+            <input type="submit" value="submit">
+        </form>
+        <div class="result" style="display: none;">
+            <p>Result: </p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
