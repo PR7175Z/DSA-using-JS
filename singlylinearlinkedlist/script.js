@@ -36,7 +36,7 @@ class LinkedList{
         if(this.head !== null){
             let pthis = this.head;
             let i =0;
-            while(i<index){
+            while(i<index-1){
                 pthis = pthis.next;
                 i++;
             }
@@ -52,7 +52,7 @@ class LinkedList{
         if(this.head !== null){
             let pthis = this.head;
             let i =0;
-            while(i<=index){
+            while(i<index){
                 pthis = pthis.next;
                 i++;
             }
@@ -63,11 +63,66 @@ class LinkedList{
             this.head = node;
         }
     }
+
+    removef(){
+        if(this.head === null) return;
+
+        this.head = this.head.next;
+        return;
+    }
+
+    removel(){
+        if(this.head === null) return;
+
+        if(this.head.next === null){
+            this.head = this.head.next;
+            return;
+        }
+
+        let pthis = this.head;
+        while(pthis.next.next !== null){
+            pthis = pthis.next;
+        }
+        pthis.next = null;
+        return;
+    }
+
+    removeindex(index){
+        if(this.head === null) return;
+
+        if(this.head.next === null){
+            this.head = this.head.next;
+            return;
+        }
+
+        let pthis = this.head;
+        for(let i = 0; i<index-1; i++){
+            pthis = pthis.next;
+        }
+        let temp = pthis.next.next;
+        pthis.next = null;
+        pthis.next = temp;
+        return;
+    }
+
+    printList() {
+        let current = this.head;
+        let result = '';
+
+        let p = 0;
+        while (current !== null) {
+            result += current.data + ' -> ';
+            current = current.next;
+        }
+
+        return result+'null';
+    }
 }
 let list = new LinkedList();
 
 document.getElementById('inputform').addEventListener('submit', (e)=>{
     e.preventDefault();
+    document.querySelector('.result').innerHTML = '';
     const inputnode = document.querySelector('input[name="listiteminput"]').value;
     const inputoption = document.querySelector('select[name="listoperation"]').value;
     const indexval = document.querySelector('input[name="indexval"]').value;
@@ -80,22 +135,31 @@ document.getElementById('inputform').addEventListener('submit', (e)=>{
             list.insertend(node);
             break;
         case 'insertbi':
-            list.insertbi(node, indexval);
+            list.insertbi(node, parseInt(indexval));
             break;
         case 'insertai':
-            list.insertai(node, indexval);
+            list.insertai(node, parseInt(indexval));
             break;
         case 'removef':
-            console.log(inputnode)
+            list.removef();
             break;
         case 'removel':
-            console.log(inputnode)
+            list.removel();
             break;
         case 'removeiindex':
-            console.log(inputnode)
+            list.removeindex(parseInt(indexval));
             break;
     }
 
-    console.log(list);
+    let res = list.printList();
+    
+    let ressplit = res.split(' -> ');
+    let p;
+    let result='';
+    ressplit.forEach((element)=>{
+        p = document.createElement('p');
+        p.innerHTML = element;
+        document.querySelector('.result').appendChild(p);
+    })
 })
 
