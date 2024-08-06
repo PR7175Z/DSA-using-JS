@@ -120,6 +120,14 @@ class LinkedList{
 }
 let list = new LinkedList();
 
+document.querySelector('select[name="listoperation"]').addEventListener('change', (e)=>{
+    if(e.target.value == 'insertbi' || e.target.value == 'insertai' || e.target.value == 'removeiindex'){
+        document.querySelector('input[name="indexval"]').style.display = 'block';
+    } else{
+        document.querySelector('input[name="indexval"]').style.display = 'none';
+    }
+})
+
 document.getElementById('inputform').addEventListener('submit', (e)=>{
     e.preventDefault();
     document.querySelector('.result').innerHTML = '';
