@@ -163,7 +163,6 @@ document.getElementById('inputform').addEventListener('submit', (e)=>{
     
     let ressplit = res.split(' -> ');
     let p;
-    let result='';
     ressplit.forEach((element)=>{
         p = document.createElement('p');
         p.innerHTML = element;
