@@ -46,3 +46,7 @@ form input:not([type]), input[type="submit"]:hover{
     transition: all 0.2s ;
     cursor: pointer;
 }
+
+.result p{
+    display: inline-block;
+}
